@@ -29,7 +29,7 @@ jobs:
       # Paso 2: crear tarea en ClickUp
       - name: Create ClickUp Task
         run: |
-          curl -X POST "https://api.clickup.com/api/v2/list/8ckt574-253/task" \
+          curl -X POST "https://api.clickup.com/api/v2/list/901320344286/task" \
             -H "Authorization: ${{ secrets.CLICKUP_API_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d "{
