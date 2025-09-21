@@ -1,4 +1,4 @@
-name: Notify on Issue Created
+name: Notify on Issue Created + Create ClickUp Task
 
 on:
   issues:
@@ -8,6 +8,7 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
+      # Paso 1: enviar correo
       - name: Send email on new issue
         uses: dawidd6/action-send-mail@v3
         with:
@@ -24,3 +25,15 @@ jobs:
             📌 Título: ${{ github.event.issue.title }}
             📝 Descripción: ${{ github.event.issue.body }}
             🔗 Link: ${{ github.event.issue.html_url }}
+
+      # Paso 2: crear tarea en ClickUp
+      - name: Create ClickUp Task
+        run: |
+          curl -X POST "https://api.clickup.com/api/v2/list/8ckt574-253/task" \
+            -H "Authorization: ${{ secrets.CLICKUP_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"name\": \"${{ github.event.issue.title }}\",
+              \"description\": \"${{ github.event.issue.body }}\n\n🔗 [Ver Issue en GitHub](${{ github.event.issue.html_url }})\",
+              \"status\": \"open\"
+            }"
