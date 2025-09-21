@@ -1,0 +1,26 @@
+name: Notify on Issue Created
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send email on new issue
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USER }}
+          password: ${{ secrets.EMAIL_PASS }}
+          subject: "🔔 Nuevo Issue en GitHub: ${{ github.event.issue.title }}"
+          to: "tu-correo@ejemplo.com"
+          from: "GitHub Actions <${{ secrets.EMAIL_USER }}>"
+          body: |
+            ¡Se creó un nuevo Issue en el repositorio!
+
+            📌 Título: ${{ github.event.issue.title }}
+            📝 Descripción: ${{ github.event.issue.body }}
+            🔗 Link: ${{ github.event.issue.html_url }}
