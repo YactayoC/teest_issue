@@ -35,5 +35,5 @@ jobs:
             -d "{
               \"name\": \"${{ github.event.issue.title }}\",
               \"description\": \"${{ github.event.issue.body }}\n\n🔗 [Ver Issue en GitHub](${{ github.event.issue.html_url }})\",
-              \"status\": \"open\"
+              \"status\": \"to do\"
             }"
