@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.EMAIL_USER }}
           password: ${{ secrets.EMAIL_PASS }}
           subject: "🔔 Nuevo Issue en GitHub: ${{ github.event.issue.title }}"
-          to: "syactayocrisostomo@gmail.com"
+          to: "syactayocrisostomo@gmail.com, sebascha.sistemas2003@gmail.com"
           from: "GitHub Actions <${{ secrets.EMAIL_USER }}>"
           body: |
             ¡Se creó un nuevo Issue en el repositorio!
